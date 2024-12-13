@@ -1,0 +1,457 @@
+(kali㉿kali)-[~]
+└─$ cd/var/www/html
+zsh: no such file or directory: cd/var/www/html
+                                                                             
+┌──(kali㉿kali)-[~]
+└─$ sudo git clone https://github.com/digininja/DVWA.git
+[sudo] password for kali: 
+Cloning into 'DVWA'...
+remote: Enumerating objects: 4895, done.
+remote: Counting objects: 100% (55/55), done.
+remote: Compressing objects: 100% (30/30), done.
+remote: Total 4895 (delta 25), reused 41 (delta 20), pack-reused 4840 (from 1)
+Receiving objects: 100% (4895/4895), 2.44 MiB | 717.00 KiB/s, done.
+Resolving deltas: 100% (2362/2362), done.
+                                                                             
+┌──(kali㉿kali)-[~]
+└─$ ls
+Desktop    Downloads  Music     Public  Templates
+Documents  DVWA       Pictures  rsa     Videos
+                                                                             
+┌──(kali㉿kali)-[~]
+└─$ cd/var/www/html
+zsh: no such file or directory: cd/var/www/html
+                                                                             
+┌──(kali㉿kali)-[~]
+└─$ sudo mv DVWA dvwa                                   
+                                                                             
+┌──(kali㉿kali)-[~]
+└─$ sudo chmod -R 777 dvwa
+                                                                             
+┌──(kali㉿kali)-[~]
+└─$ cd dvwa        
+                                                                             
+┌──(kali㉿kali)-[~/dvwa]
+└─$ cd config
+                                                                             
+┌──(kali㉿kali)-[~/dvwa/config]
+└─$ ls
+config.inc.php.dist
+                                                                             
+┌──(kali㉿kali)-[~/dvwa/config]
+└─$ sudo cp config.inc.php.dist config.inc.php
+                                                                             
+┌──(kali㉿kali)-[~/dvwa/config]
+└─$ ls
+config.inc.php  config.inc.php.dist
+                                                                             
+┌──(kali㉿kali)-[~/dvwa/config]
+└─$ sudo nano config.inc.php                  
+                                                                                                                                                                                                                   
+┌──(kali㉿kali)-[~/dvwa/config]
+└─$ sudo service mysql start
+                                                                                                                                                                                                                   
+┌──(kali㉿kali)-[~/dvwa/config]
+└─$ sudo mysql -u root -p   
+Enter password: 
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 31
+Server version: 11.4.2-MariaDB-4 Debian n/a
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Support MariaDB developers by giving a star at https://github.com/MariaDB/server
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> create database csda
+    -> 
+    -> 
+    -> ^C
+MariaDB [(none)]> create database csda;
+Query OK, 1 row affected (0.001 sec)
+
+MariaDB [(none)]> create user csda@127.0.0.1 identified by 'password';
+Query OK, 0 rows affected (0.017 sec)
+
+MariaDB [(none)]> grant all on csda.*to csda@127.0.0.1;
+Query OK, 0 rows affected (0.002 sec)
+
+MariaDB [(none)]> exit
+Bye
+                                                                                                                                                                                                                   
+┌──(kali㉿kali)-[~/dvwa/config]
+└─$ cd /etc  
+                                                                                                                                                                                                                   
+┌──(kali㉿kali)-[/etc]
+└─$ ls
+adduser.conf            cron.monthly              fstab               init.d              lightdm         mysql            passwd-            request-key.conf   ssl                  unicornscan
+alsa                    crontab                   fuse.conf           initramfs-tools     lighttpd        nanorc           perl               request-key.d      sslsplit             updatedb.conf
+alternatives            cron.weekly               gai.conf            inputrc             locale.alias    netconfig        php                resolv.conf        strongswan.conf      update-motd.d
+apache2                 cron.yearly               geoclue             insserv.conf.d      locale.conf     netsniff-ng      plymouth           responder          strongswan.d         UPower
+apparmor                cryptsetup-initramfs      ghostscript         ipp-usb             locale.gen      network          polkit-1           rmt                stunnel              usb_modeswitch.conf
+apparmor.d              cryptsetup-nuke-password  glvnd               ipsec.conf          localtime       NetworkManager   postgresql         rpc                subgid               usb_modeswitch.d
+apt                     crypttab                  gnome-system-tools  ipsec.d             logcheck        networks         postgresql-common  runit              subgid-              vconsole.conf
+arp-scan                cupshelpers               gophish             ipsec.secrets       login.defs      nfs.conf         powershell-empire  samba              subuid               vdpau_wrapper.cfg
+avahi                   dbus-1                    gprofng.rc          issue               logrotate.conf  nfs.conf.d       ppp                sane.d             subuid-              vim
+bash.bashrc             dconf                     groff               issue.net           logrotate.d     nftables.conf    profile            scalpel            subversion           vmware-tools
+bash_completion         debconf.conf              group               java-17-openjdk     macchanger      nginx            profile.d          screenrc           sudo.conf            vpnc
+bash_completion.d       debian_version            group-              java-23-openjdk     machine-id      nikto.conf       protocols          sddm.conf.d        sudoers              vulkan
+bindresvport.blacklist  default                   grub.d              john                magic           nsisconf.nsh     proxychains4.conf  searchsploit_rc    sudoers.d            wgetrc
+binfmt.d                deluser.conf              gshadow             kali-menu           magic.mime      nsswitch.conf    pulse              security           sudo_logsrvd.conf    wireshark
+bluetooth               dhcp                      gshadow-            kernel              mailcap         ntpsec           python2.7          selinux            supercat             wpa_supplicant
+ca-certificates         dictionaries-common       gss                 keyutils            mailcap.order   ODBCDataSources  python3            sensors3.conf      sv                   X11
+ca-certificates.conf    dns2tcpd.conf             gtk-2.0             kismet              manpath.config  odbc.ini         python3.11         sensors.d          sysctl.d             xattr.conf
+chatscripts             doc-base                  gtk-3.0             ldap                matplotlibrc    odbcinst.ini     radcli             services           sysstat              xdg
+chromium                dpkg                      guymager            ld.so.cache         mime.types      openal           rc0.d              sgml               systemd              xfce4
+chromium.d              e2scrub.conf              gvm                 ld.so.conf          minicom         OpenCL           rc1.d              shadow             terminfo             xml
+cifs-utils              eac                       hdparm.conf         ld.so.conf.d        miredo          openni2          rc2.d              shadow-            texmf                xrdp
+cloud                   emacs                     host.conf           legion.conf         miredo.conf     opensc           rc3.d              shells             tightvncserver.conf  zsh
+colord                  environment               hostname            letsencrypt         mke2fs.conf     openvas          rc4.d              skel               timezone             zsh_command_not_found
+console-setup           environment.d             hosts               libao.conf          ModemManager    openvpn          rc5.d              smartd.conf        timidity
+cracklib                ethertypes                hosts.allow         libaudit.conf       modprobe.d      opt              rc6.d              smartmontools      tmpfiles.d
+credstore               ettercap                  hosts.deny          libblockdev         modules         os-release       rcS.d              smi.conf           ts.conf
+credstore.encrypted     firebird                  idmapd.conf         libccid_Info.plist  modules-load.d  pam.conf         reader.conf.d      snmp               ucf.conf
+cron.d                  firefox-esr               ifplugd             libibverbs.d        mosquitto       pam.d            rearj.cfg          speech-dispatcher  udev
+cron.daily              fonts                     ImageMagick-6       libnl-3             motd            papersize        redis              sqlmap             udisks2
+cron.hourly             freetds                   inetsim             libpaper.d          mtab            passwd           redsocks.conf      ssh                ufw
+                                                                                                                                                                                                                   
+┌──(kali㉿kali)-[/etc]
+└─$ cd php 
+                                                                                                                                                                                                                   
+┌──(kali㉿kali)-[/etc/php]
+└─$ ls
+8.2
+                                                                                                                                                                                                                   
+┌──(kali㉿kali)-[/etc/php]
+└─$ sudo nano php.ini       
+                                                                                                                                                                                                                   
+┌──(kali㉿kali)-[/etc/php]
+└─$ sudo service apache2 start
+                                                                                                                                                                                                                   
+┌──(kali㉿kali)-[/etc/php]
+└─$ sudo service apache2 start
+                                                                                                                                                                                                                   
+┌──(kali㉿kali)-[/etc/php]
+└─$ cd 8.2
+                                                                                           
+┌──(kali㉿kali)-[/etc/php/8.2]
+└─$ cd apache2
+                                                                                           
+┌──(kali㉿kali)-[/etc/php/8.2/apache2]
+└─$ sudo service apache2 start
+[sudo] password for kali: 
+                                                                                           
+┌──(kali㉿kali)-[/etc/php/8.2/apache2]
+└─$ ^[[200~sudo systemctl status apache2
+zsh: bad pattern: ^[[200~sudo
+                                                                                           
+┌──(kali㉿kali)-[/etc/php/8.2/apache2]
+└─$ sudo systemctl status apache2 
+
+● apache2.service - The Apache HTTP Server
+     Loaded: loaded (/usr/lib/systemd/system/apache2.service; disabled; preset: disabled)
+     Active: active (running) since Tue 2024-11-26 23:37:41 EST; 2 weeks 2 days ago
+ Invocation: 54ca4b9d52f54633bf96c23de7b91612
+       Docs: https://httpd.apache.org/docs/2.4/
+    Process: 7473 ExecStart=/usr/sbin/apachectl start (code=exited, status=0/SUCCESS)
+   Main PID: 7489 (apache2)
+      Tasks: 7 (limit: 2258)
+     Memory: 8.3M (peak: 20.3M swap: 7.3M swap peak: 7.3M)
+        CPU: 644ms
+     CGroup: /system.slice/apache2.service
+             ├─7489 /usr/sbin/apache2 -k start
+             ├─7500 /usr/sbin/apache2 -k start
+             ├─7501 /usr/sbin/apache2 -k start
+             ├─7502 /usr/sbin/apache2 -k start
+             ├─7503 /usr/sbin/apache2 -k start
+             ├─7504 /usr/sbin/apache2 -k start
+             └─9539 /usr/sbin/apache2 -k start
+
+Nov 26 23:37:41 kali systemd[1]: Starting apache2.service - The Apache HTTP Server...
+Nov 26 23:37:41 kali apachectl[7488]: AH00558: apache2: Could not reliably determine the s>
+Nov 26 23:37:41 kali systemd[1]: Started apache2.service - The Apache HTTP Server.
+
+                                                                                           
+┌──(kali㉿kali)-[/etc/php/8.2/apache2]
+└─$ sudo mv ~/dvwa /var/www/html/dvwa
+
+                                                                                           
+┌──(kali㉿kali)-[/etc/php/8.2/apache2]
+└─$ sudo chown -R www-data:www-data /var/www/html/dvwa
+sudo chmod -R 755 /var/www/html/dvwa
+
+                                                                                           
+┌──(kali㉿kali)-[/etc/php/8.2/apache2]
+└─$ sudo nano /etc/apache2/sites-available/000-default.conf
+
+                                                                                           
+┌──(kali㉿kali)-[/etc/php/8.2/apache2]
+└─$ sudo a2enmod rewrite
+sudo systemctl restart apache2
+
+Enabling module rewrite.
+To activate the new configuration, you need to run:
+  systemctl restart apache2
+                                                                                           
+┌──(kali㉿kali)-[/etc/php/8.2/apache2]
+└─$ sudo chown -R www-data:www-data /var/www/html/dvwa
+sudo chmod -R 755 /var/www/html/dvwa
+
+                                                                                           
+┌──(kali㉿kali)-[/etc/php/8.2/apache2]
+└─$ sudo systemctl restart apache2
+
+                                                                                           
+┌──(kali㉿kali)-[/etc/php/8.2/apache2]
+└─$ sudo nano php.ini                                      
+                                                                                           
+┌──(kali㉿kali)-[/etc/php/8.2/apache2]
+└─$ sudo service apache2 start    
+                                                                                           
+┌──(kali㉿kali)-[/etc/php/8.2/apache2]
+└─$ sudo systemctl status apache2
+
+● apache2.service - The Apache HTTP Server
+     Loaded: loaded (/usr/lib/systemd/system/apache2.service; disabled; preset: disabled)
+     Active: active (running) since Fri 2024-12-13 00:03:34 EST; 10min ago
+ Invocation: 4001a3fb14e64011894b5d389770c319
+       Docs: https://httpd.apache.org/docs/2.4/
+    Process: 47956 ExecStart=/usr/sbin/apachectl start (code=exited, status=0/SUCCESS)
+   Main PID: 47960 (apache2)
+      Tasks: 7 (limit: 2258)
+     Memory: 17.1M (peak: 17.4M)
+        CPU: 439ms
+     CGroup: /system.slice/apache2.service
+             ├─47960 /usr/sbin/apache2 -k start
+             ├─47963 /usr/sbin/apache2 -k start
+             ├─47964 /usr/sbin/apache2 -k start
+             ├─47965 /usr/sbin/apache2 -k start
+             ├─47966 /usr/sbin/apache2 -k start
+             ├─47967 /usr/sbin/apache2 -k start
+             └─48874 /usr/sbin/apache2 -k start
+
+Dec 13 00:03:34 kali systemd[1]: Starting apache2.service - The Apache HTTP Server...
+Dec 13 00:03:34 kali apachectl[47959]: AH00558: apache2: Could not reliably determine the >
+Dec 13 00:03:34 kali systemd[1]: Started apache2.service - The Apache HTTP Server.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+apache2.service; disabled; preset: disabled)
+12-13 00:03:34 EST; 10min ago
+
+4/
+ctl start (code=exited, status=0/SUCCESS)
+
+
+
+
+
+rt
+rt
+rt
+rt
+rt
+rt
+rt
+
+che2.service - The Apache HTTP Server...
+8: apache2: Could not reliably determine the server's fully qualified domain name, using 1>
+he2.service - The Apache HTTP Server.
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+
+                                                                                           
+┌──(kali㉿kali)-[/etc/php/8.2/apache2]
+└─$ ^[[200~sudo nano /etc/apache2/apache2.conf
+zsh: bad pattern: ^[[200~sudo
+                                                                                           
+┌──(kali㉿kali)-[/etc/php/8.2/apache2]
+└─$ sudo nano /etc/apache2/apache2.conf 
+
+                                                                                           
+┌──(kali㉿kali)-[/etc/php/8.2/apache2]
+└─$ sudo systemctl restart apache2
+
+Job for apache2.service failed because the control process exited with error code.
+See "systemctl status apache2.service" and "journalctl -xeu apache2.service" for details.
+                                                                                           
+┌──(kali㉿kali)-[/etc/php/8.2/apache2]
+└─$ 
+                                                                                           
+┌──(kali㉿kali)-[/etc/php/8.2/apache2]
+└─$ sudo systemctl status apache2.service
+
+× apache2.service - The Apache HTTP Server
+     Loaded: loaded (/usr/lib/systemd/system/apache2.service; disabled; preset: disabled)
+     Active: failed (Result: exit-code) since Fri 2024-12-13 00:18:41 EST; 31s ago
+   Duration: 15min 7.426s
+ Invocation: a386707f7c9e4a97bcc4ec025b30a3ab
+       Docs: https://httpd.apache.org/docs/2.4/
+    Process: 55714 ExecStart=/usr/sbin/apachectl start (code=exited, status=1/FAILURE)
+
+Dec 13 00:18:41 kali systemd[1]: Starting apache2.service - The Apache HTTP Server...
+Dec 13 00:18:41 kali apachectl[55717]: AH00526: Syntax error on line 119 of /etc/apache2/a>
+Dec 13 00:18:41 kali apachectl[55717]: Invalid command 'nano', perhaps misspelled or defin>
+Dec 13 00:18:41 kali systemd[1]: apache2.service: Control process exited, code=exited, sta>
+Dec 13 00:18:41 kali systemd[1]: apache2.service: Failed with result 'exit-code'.
+Dec 13 00:18:41 kali systemd[1]: Failed to start apache2.service - The Apache HTTP Server.
+
+                                                                                           
+┌──(kali㉿kali)-[/etc/php/8.2/apache2]
+└─$ sudo nano /etc/apache2/apache2.conf
+
+                                                                                           
+┌──(kali㉿kali)-[/etc/php/8.2/apache2]
+└─$ sudo apachectl configtest
+
+AH00526: Syntax error on line 119 of /etc/apache2/apache2.conf:
+Invalid command '1', perhaps misspelled or defined by a module not included in the server configuration
+                                                                                           
+┌──(kali㉿kali)-[/etc/php/8.2/apache2]
+└─$ sudo nano /etc/apache2/apache2.conf
+
+                                                                                           
+┌──(kali㉿kali)-[/etc/php/8.2/apache2]
+└─$ sudo apachectl configtest
+
+AH00526: Syntax error on line 119 of /etc/apache2/apache2.conf:
+Invalid command '/etc/apache2/apache2.conf', perhaps misspelled or defined by a module not included in the server configuration
+                                                                                           
+┌──(kali㉿kali)-[/etc/php/8.2/apache2]
+└─$ ^[[200~sudo nano /etc/apache2/apache2.conf
+zsh: bad pattern: ^[[200~sudo
+                                                                                           
+┌──(kali㉿kali)-[/etc/php/8.2/apache2]
+└─$ ~sudo nano /etc/apache2/apache2.conf
+
+Command '~sudo' not found, did you mean:
+  command 'sudo' from deb sudo
+  command 'sudo' from deb sudo-ldap
+Try: sudo apt install <deb name>
+                                                                                           
+┌──(kali㉿kali)-[/etc/php/8.2/apache2]
+└─$ sudo nano /etc/apache2/apache2.conf
+
+                                                                                           
+┌──(kali㉿kali)-[/etc/php/8.2/apache2]
+└─$ sudo apachectl configtest
+
+Syntax OK
+                                                                                           
+┌──(kali㉿kali)-[/etc/php/8.2/apache2]
+└─$ sudo systemctl restart apache2
+
+                                                                                           
+┌──(kali㉿kali)-[/etc/php/8.2/apache2]
+└─$ sudo systemctl status apache2
+
+● apache2.service - The Apache HTTP Server
+     Loaded: loaded (/usr/lib/systemd/system/apache2.service; disabled; preset: disabled)
+     Active: active (running) since Fri 2024-12-13 00:25:00 EST; 10s ago
+ Invocation: 0ab6a7dcc5f84954ae10156a0f664afa
+       Docs: https://httpd.apache.org/docs/2.4/
+    Process: 58808 ExecStart=/usr/sbin/apachectl start (code=exited, status=0/SUCCESS)
+   Main PID: 58811 (apache2)
+      Tasks: 6 (limit: 2258)
+     Memory: 12.7M (peak: 13.4M)
+        CPU: 177ms
+     CGroup: /system.slice/apache2.service
+             ├─58811 /usr/sbin/apache2 -k start
+             ├─58814 /usr/sbin/apache2 -k start
+             ├─58815 /usr/sbin/apache2 -k start
+             ├─58816 /usr/sbin/apache2 -k start
+             ├─58817 /usr/sbin/apache2 -k start
+             └─58818 /usr/sbin/apache2 -k start
+
+Dec 13 00:25:00 kali systemd[1]: Starting apache2.service - The Apache HTTP Server...
+Dec 13 00:25:00 kali systemd[1]: Started apache2.service - The Apache HTTP Server.
+                                                                                         
+┌──(kali㉿kali)-[/etc/php/8.2/apache2]
+└─$ ^[[200~ine the >
+zsh: parse error near `\n'
+                                                                                         
+┌──(kali㉿kali)-[/etc/php/8.2/apache2]
+└─$ Dec 13 00:03:34 kali systemd[1]: Started apache2.service - The Apache HTTP Server.
+Command 'Dec' not found, did you mean:
+  command 'sec' from deb sec
+  command 'rec' from deb sox
+Try: sudo apt install <deb name>
+                                                                                         
+┌──(kali㉿kali)-[/etc/php/8.2/apache2]
+└─$ 
+                                                                                         
+┌──(kali㉿kali)-[/etc/php/8.2/apache2]
+└─$ 
+                                                                                         
+┌──(kali㉿kali)-[/etc/php/8.2/apache2]
+└─$ sudo nano /var/www/html/dvwa/config/config.inc.php
+
+                                                                                         
+┌──(kali㉿kali)-[/etc/php/8.2/apache2]
+└─$ 
